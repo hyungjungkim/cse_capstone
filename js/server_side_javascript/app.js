@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 //express가 post req.body를 지원 안하기 때문에 해줌.
 var app = express();
 
-//pretty
+//pretty 줄바꿈
 app.locals.pretty = true;
 
 //jade temlplate
