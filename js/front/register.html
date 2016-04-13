@@ -1,0 +1,111 @@
+  <!DOCTYPE html>
+  <html >
+  <head>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  </head>
+  <body>
+    <script>
+    alert("hi");
+    </script>
+    <div ng-app="register" class="container" ng-controller="myCtrl">
+      <h1>Register</h1>
+      <form ng-submit="submit()">
+        <label>Username</label>
+        <input type="text" ng-model="login" />
+        <label>Password</label>
+        <input type="password" ng-model="password" />
+        <label>Confirm Password</label>
+        <input type="password"  />
+        <br/>
+        <input type = "submit" class="btn btn-primary" value ="Sign up"/>
+        <a class="btn" href="#/login"> Login </a>
+      </form>
+      <br/>
+      TEST: {{testmsg}}
+    </div>
+    <br/>
+
+    <script>
+    var app = angular.module('register', [])
+    .controller('myCtrl', function($scope, $http){
+      $scope.submit = function(){
+        $http({
+          method: 'POST',
+          url: 'http://',
+          data: dataObject,
+          header: {'Content-Type': 'application/json; charset=utf-8'}
+        }).successs(function(data, status, headers, config){
+          alert("success");
+        }).error(function(data, status, headers, config){
+          alert("error");
+        })
+      }
+    });
+
+
+
+
+
+
+
+
+
+  //     var app=angular.module('register', [], function($routeProvider){
+  //
+  // /*      $routeProvider.when('/login',{
+  //         templateUrl: 'login.html',
+  //         controller: function($scope, $http){
+  //           $http.get('/users/me').success(function (data){
+  //             location.hash = '/main';
+  //           }).error(function(){
+  //             $scope.login = '';
+  //             $scope.password ='';
+  //
+  //             $scope.submit = function (){
+  //               $http.post('/users/login', {
+  //                 login: $scope.login,
+  //                 password: $scope.password
+  //               }).success(function (data){
+  //                 location.hash = '/main';
+  //               }).error(function(data){
+  //                 $scope.login ='';
+  //                 $scope.password='';
+  //                 alert('로그인 실패');
+  //               });
+  //             };
+  //           });
+  //         }
+  //       });
+  //       */
+  //
+  //       $routeProvider.when('/register',{
+  //         templateUrl: 'register.html',
+  //         controller: function($scope, $http){
+  //           $scope.login = '';
+  //           $scope.password = '';
+  //
+  //           $scope.submit = function(){
+  //             $http.post('/users', {
+  //               login:$scope.login,
+  //               password: $scope.password
+  //             }).success(function (data){
+  //               location.hash = '/login';
+  //             }).error(function(data){
+  //               $scope.login = '';
+  //               $scope.password ='';
+  //               alert('가입실패');
+  //             });
+  //           };
+  //         }
+  //       });
+  //
+  //       $routeProvider.otherwise({
+  //         redirectTo: '/login'
+  //       });
+  //     });
+  </script>
+
+
+  </body>
+  </html>
