@@ -3,12 +3,40 @@
      // prompted by your browser. If you see the error "The Geolocation service
      // failed.", it means you probably did not give permission for the browser to
      // locate you.
+var pos = {
+  lat:36.397,
+  lng:126.644
+};
+
+var  posArr = [];
+
+var pos_test1 = {
+  lat:36.398,
+  lng:126.644
+};
+
+var pos_test2 = {
+  lat:36.396,
+  lng:126.644
+};
+
+var pos_test3 = {
+  lat:36.397,
+  lng:126.643
+};
+
+posArr.push(pos);
+posArr.push(pos_test1);
+posArr.push(pos_test2);
+posArr.push(pos_test3);
+
+var markers = [];
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
                 center: {
-                    lat: -34.397,
-                    lng: 150.644
+                    lat: 36.397,
+                    lng: 126.644
                 },
                 zoom: 15
             });
@@ -20,37 +48,30 @@
             });
 
         // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
+
 
                 //infoWindow.setPosition(pos);
-                var marker = new google.maps.Marker({
-                        position: pos,
+                for(var i =0; i<4; i++){
+                  var marker = new google.maps.Marker({
+                        position: posArr[i],
                         map: map
                     });
 
-                map.setCenter(pos);
+                  markers.push(marker);
 
-                marker.addListener('click', function() {
-                    infoWindow.open(map, marker);
-                })
-            }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
-            });
+                    marker.addListener('click', function() {
+                        infoWindow.open(map, marker);
+                    });
+                  }
+            }
 
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-    }
 
+
+/*
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
     }
+*/
