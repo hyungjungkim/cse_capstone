@@ -31,40 +31,68 @@ posArr.push(pos_test2);
 posArr.push(pos_test3);
 
 var markers = [];
+var contentString = '<dirv id="content">' + '<div id="userinfor">' + 'information div' + '</div>' + '<div id="reviewpoint">' + 'eviewpoint div' + '</div>' + '<input type="submit" value="button1">' + '</div>';
+var map;
+var infoWindow = [];
 
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+function initMap() {
+         map = new google.maps.Map(document.getElementById('map'), {
                 center: {
                     lat: 36.397,
                     lng: 126.644
                 },
-                zoom: 15
+                zoom: 15,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
             });
 
-        var contentString = '<dirv id="content">' + '<div id="userinfor">' + 'information div' + '</div>' + '<div id="reviewpoint">' + 'eviewpoint div' + '</div>' + '<input type="submit" value="button1">' + '</div>';
 
-        var infoWindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-
+          /*  infoWindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+*/
         // Try HTML5 geolocation.
 
-
                 //infoWindow.setPosition(pos);
-                for(var i =0; i<4; i++){
-                  var marker = new google.maps.Marker({
-                        position: posArr[i],
-                        map: map
-                    });
 
-                  markers.push(marker);
+                for(var i=0; i<4; i++)
+                {
+                  markers[i] = new google.maps.Marker({
+                    position: posArr[i],
+                    map: map
+                  });
+                  infoWindow[i] = new google.maps.InfoWindow({
+                    content:contentString
+                  });
 
-                    marker.addListener('click', function() {
-                        infoWindow.open(map, marker);
-                    });
-                  }
-            }
+                  google.maps.event.addListener(markers[i], 'click', function(innerkey){
+                    return function(){
+                      infoWindow.forEach(function(item, index, infoWindow){
+                        infoWindow[index].close();
+                      });
+                      infoWindow[innerkey].open(map, markers[innerkey]);
+                    }
+                  }(i));
+                }
 
+}
+/* 요기 아래는 블로그에서 본 예제코드,
+//근데 위 코드가 더 나은듯 신경안써도 댐
+function addMarker(pos){
+      marker = new google.maps.Marker({
+      position:pos,
+      map: map
+  });
+  markers.push(marker);
+//  google.maps.event.addListener(marker, 'click', function(event){
+//    popInfowindow(pos);
+//  });
+}
+
+function popInfowindow(pos){
+
+//  addMarker(pos);
+//  infoWindow.open(map, marker);
+}
 
 
 /*
