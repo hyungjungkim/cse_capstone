@@ -3,10 +3,32 @@
      // prompted by your browser. If you see the error "The Geolocation service
      // failed.", it means you probably did not give permission for the browser to
      // locate you.
+/*
+var express = require('express');
+var app = express();
+
+
+var maps = require();
+
+var mysql= require('mysql');
+var conn = mysql.createConnection({
+ host     : 'localhost',
+ user     : 'root',
+ password : '111111',
+ database : 'gmap'
+});
+conn.connect();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+*/
 var pos = {
   lat:36.397,
   lng:126.644
 };
+
+
 
 var  posArr = [];
 
@@ -30,12 +52,14 @@ posArr.push(pos_test1);
 posArr.push(pos_test2);
 posArr.push(pos_test3);
 
+
 var markers = [];
-var contentString = '<dirv id="content">' + '<div id="userinfor">' + 'information div' + '</div>' + '<div id="reviewpoint">' + 'eviewpoint div' + '</div>' + '<input type="submit" value="button1">' + '</div>';
+var contentString = '<dirv id="content">' + '<div id="userinfor">' + '이름 : kim' + '</div>' + '<div id="reviewpoint">' + '가능' + '</div>' + '<input type="submit" value="message">' + '</div>';
 var map;
 var infoWindow = [];
 
 function initMap() {
+        console.log("ddd");
          map = new google.maps.Map(document.getElementById('map'), {
                 center: {
                     lat: 36.397,
@@ -75,6 +99,11 @@ function initMap() {
                 }
 
 }
+/*
+app.listen(3000,function(){
+  console.log('Connected, 3000 port!');
+});
+*/
 /* 요기 아래는 블로그에서 본 예제코드,
 //근데 위 코드가 더 나은듯 신경안써도 댐
 function addMarker(pos){
