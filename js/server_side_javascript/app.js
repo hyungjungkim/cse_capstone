@@ -1,15 +1,15 @@
 //express module
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 //express가 post req.body를 지원 안하기 때문에 해줌.
 var app = express();
 
 //pretty 줄바꿈
 app.locals.pretty = true;
 
-//jade temlplate
-app.set('view engine' , 'jade');
-app.set('views','./views');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -19,6 +19,10 @@ app.use(express.static('public'));
 //jade template test
 app.get('/template',function(req,res){
 	res.render('temp',{_title:'okay jade' , time:Date()});
+});
+
+app.get('/map',function(req,res){
+  res.render('showmylocation');
 });
 
 //query string***

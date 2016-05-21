@@ -75,7 +75,7 @@ app.get('/auth/login',function(req,res){
         <input type = "password" name = "password" placeholder = "password">
       </p>
       <p>
-        <input type = "submit">
+        <input type = "submit" value = "login">
       </p>
     </form>
   `;

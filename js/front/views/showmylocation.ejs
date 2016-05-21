@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>reverse geocodeing</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #map {
+                height: 800px;
+                width: 1200px;
+                float: right;
+            }
+        </style>
+        <script>
+            console.log("ddddddddd");
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA52_8sVgf49nSXkvHsEKBxgDnEEoXxRBo&signed_in=true&callback=initMap"  async defer ></script>
+        <script src="javascript/reverse_geocoding.js">
+        geocodeLatLng(geocoder, map, infowindow);
+        </script>
+    </head>
+
+    <body>
+      내 현재 위치는
+      kokoko
+      <div id="loc">
+      </div>
+
+        <div id="map"></div>
+
+
+    </body>
+
+
+</html>
