@@ -1,3 +1,5 @@
+
+
 var pos = {
   lat:37.450587,
   lng:126.657371
@@ -6,7 +8,7 @@ var pos = {
 function initMap() {
   console.log("ddddd")
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 17,
+    zoom: 25,
     center: pos
   });
   var geocoder = new google.maps.Geocoder;
@@ -31,7 +33,7 @@ function geocodeLatLng(geocoder, map, infowindow) {
   geocoder.geocode({'location': pos}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       if (results[1]) {
-        map.setZoom(17);
+        map.setZoom(15);
         var marker = new google.maps.Marker({
           position: pos,
           map: map
