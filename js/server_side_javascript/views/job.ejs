@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<meta charset ="utf-8">
+<head>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+  <script>
+
+var map;
+var markers = [];
+
+function initMap() {
+  var haightAshbury = {lat: 37.451196, lng: 126.655124  };
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 17,
+    center: haightAshbury,
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  });
+
+  map.addListener('click', function(event) {
+    addMarker(event.latLng, map);
+    test = event.latLng;
+    var text = document.getElementById("loc");
+    text.innerHTML = test;
+  });
+
+
+
+}
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function addMarker(location, map) {
+  setMapOnAll(null);
+  markers =[];
+
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  markers.push(marker);
+}
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3d1ejMwR_9m96XnudfgIV0jVe7z-vOXk&signed_in=true&callback=initMap"
+      async defer>
+  </script>
+</head>
+
+
+<body>
+  <header>
+    <a href="index.html"> <h1> WASHER</h1> </a>
+    <nav>
+      <div id="navLeft">
+
+        <a href="job.html" class= > <h3>도와주세요</h3> </a>
+      </div>
+
+      <div id="navRight">
+
+              <a href="login.html"> <h3>도와드려요</h3> </a>
+      </div>
+    </nav>
+  </header>
+<article>
+  <div class="form-group">
+    <label for="sel1">희망업무</label>
+    <select class="form-control" id="sel1">
+      <option>세탁</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </select>
+
+  <label>희망가격</label>
+    <input type = "text" class="form-control" placeholder="단위:원"> </input>
+
+    <label for="comment">코멘트:</label>
+    <textarea class="form-control" rows="5"> </textarea>
+
+  <label>위치</label>
+    <div id="map">
+    </div>
+      <br>
+      <button type="submit" class="btn btn-default">완료</button>
+      <button type="button" class="btn btn-default">취소</button>
+      <div id="loc">
+      </div>
+  </div>
+</article>
+  <footer>
+  </footer>
+</body>
+</html>
