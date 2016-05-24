@@ -5,6 +5,11 @@ var path = require('path');
 //express가 post req.body를 지원 안하기 때문에 해줌.
 var app = express();
 
+var index = require('./routes/index');
+var job = require('./routes/job');
+var login = require('./routes/login');
+var map = require('./routes/map');
+
 //pretty 줄바꿈
 app.locals.pretty = true;
 
@@ -13,19 +18,32 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
+
+
 //정적인 파일을 서비스하는 법.
 app.use(express.static('public'));
 
+
+app.use('/map',map);
+app.use('/index',index);
+app.use('/login',login);
+app.use('/job',job);
+
+
+/*
 //jade template test
 app.get('/template',function(req,res){
 	res.render('temp',{_title:'okay jade' , time:Date()});
 });
 
+/*
 app.get('/map',function(req,res){
   res.render('showmylocation');
 });
+*/
 
 //query string***
+/*
 app.get('/topic/:id',function(req,res){
 	var topics = [
 		'Javascript is.....',
@@ -85,12 +103,13 @@ app.get('/dynamic' , function(req,res){
 	</html>`; 			// 정적은 서버 껐다가 다시 실행해야지 변경사항 적용.
 	res.send(output);
 })
-
+*/
+/*
 //정적인 파일을 서비스하는 법
 app.get('/route', function(req,res){
 	res.send('Hello Router, <img src="/once1.jpg">');
 })
-
+*/
 app.listen(3000 , function(){
 	console.log('Connected 3000 port!');
 });
